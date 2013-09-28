@@ -1,0 +1,52 @@
+name: ${project.artifactId}
+version: ${project.version}
+description: ${project.description}
+author: Qowface
+main: ${project.mainClass}
+permissions:
+  factoids.mods:
+    description: Permissions for moderators.
+    children:
+      factoids.view: true
+      factoids.send: true
+      factoids.broadcast: true
+  factoids.admins:
+    description: Permissions for admins.
+    children:
+      factoids.mods: true
+      factoids.add: true
+      factoids.edit: true
+      factoids.remove: true
+      factoids.util: true
+  factoids.view:
+    description: Allows viewing of facts.
+    default: true
+  factoids.send:
+    description: Allows sending facts to others.
+    default: op
+  factoids.broadcast:
+    description: Allows broadcasting facts.
+    default: op
+  factoids.add:
+    description: Allows adding new facts.
+    default: op
+  factoids.edit:
+    description: Allows editing existing facts.
+    default: op
+  factoids.remove:
+    description: Allows deleting existing facts.
+    default: op
+  factoids.util:
+    description: Allows usage of the utility command.
+    default: op
+commands:
+  'factoids':
+    description: Factoids utility command.
+    usage: "/<command> <about|reload>"
+    permission: factoids.util
+    aliases: ['?f']
+  'fact':
+    description: Factoids base command.
+    usage: "/<command> <factoid>"
+    permission: factoids.view
+    aliases: ['??']

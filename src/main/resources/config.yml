@@ -1,0 +1,16 @@
+Config:
+  Debug: false
+  MySQL:
+    Host: 'localhost'
+    Database: 'db'
+    Username: 'name'
+    Password: 'pass'
+  Format:
+    Factoid: '&7'
+    Title: '&b&l'
+    Border: '&6'
+  Presets:
+    Default: ''
+  Settings:
+    ShowTitle: true
+    ShowBorder: false
