@@ -27,6 +27,11 @@ import net.qowface.factoids.Factoids;
 import net.qowface.factoids.util.Factoid;
 import org.bukkit.configuration.file.FileConfiguration;
 
+/**
+ * Handles all database interactions.
+ * 
+ * @author Qowface
+ */
 public class Database {
     
     private Factoids plugin;

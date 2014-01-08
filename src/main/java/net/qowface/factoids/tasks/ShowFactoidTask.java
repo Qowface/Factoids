@@ -23,6 +23,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * Task to display a fact to a player.
+ * 
+ * @author Qowface
+ */
 public class ShowFactoidTask extends BukkitRunnable {
 
     private Factoids plugin;

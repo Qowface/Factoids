@@ -25,6 +25,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
+/**
+ * Handles the fact command.
+ * 
+ * @author Qowface
+ */
 public class FactCommand extends AbstractCommand {
 
     public FactCommand(Factoids plugin) {

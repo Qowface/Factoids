@@ -17,6 +17,11 @@
  */
 package net.qowface.factoids.util;
 
+/**
+ * Represents a fact.
+ * 
+ * @author Qowface
+ */
 public class Factoid {
     
     private String id;

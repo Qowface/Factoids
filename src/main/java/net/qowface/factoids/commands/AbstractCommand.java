@@ -23,6 +23,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
+/**
+ * Abstract command handler.
+ * 
+ * @author Qowface
+ */
 public abstract class AbstractCommand implements CommandExecutor {
 
     Factoids plugin;

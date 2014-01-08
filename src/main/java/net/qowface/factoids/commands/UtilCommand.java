@@ -24,6 +24,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
+/**
+ * Handles the factoids (utility) command.
+ * 
+ * @author Qowface
+ */
 public class UtilCommand extends AbstractCommand {
 
     public UtilCommand(Factoids plugin) {

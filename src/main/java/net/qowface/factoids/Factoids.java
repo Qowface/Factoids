@@ -26,6 +26,11 @@ import net.qowface.factoids.util.Factoid;
 import net.qowface.factoids.util.Loggy;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * Main class.
+ * 
+ * @author Qowface
+ */
 public class Factoids extends JavaPlugin {
     
     public Loggy log;
@@ -35,14 +40,17 @@ public class Factoids extends JavaPlugin {
     
     @Override
     public void onEnable() {
+        // Setup config
         if (getConfig().options().header() == null) {
             getConfig().options().copyHeader();
             getConfig().options().copyDefaults(true);
             saveConfig();
         }
         
+        // Initialize logger
         log = new Loggy(this);
         
+        // Initialize database
         db = new Database(this);
         try {
             db.prepareTables();
@@ -50,12 +58,14 @@ public class Factoids extends JavaPlugin {
             log.warn("Could not prepare tables: " + e.toString());
         }
         
+        // Load factoids from database
         try {
             loadedFactoids = db.getFactoids();
         } catch (SQLException e) {
             log.warn("Could not load factoids from database: " + e.toString());
         }
         
+        // Register commands
         this.getCommand("fact").setExecutor(new FactCommand(this));
         this.getCommand("factoids").setExecutor(new UtilCommand(this));
         
