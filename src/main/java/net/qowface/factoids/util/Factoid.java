@@ -78,4 +78,19 @@ public class Factoid {
         this.showFrame = showFrame;
     }
     
+    public String getMessageString() {
+        String message = "";
+        boolean first = true;
+        
+        for (String string : getMessageLines()) {
+            if (!first) {
+                message += ";;";
+            }
+            message += string;
+            first = false;
+        }
+        
+        return message;
+    }
+    
 }
