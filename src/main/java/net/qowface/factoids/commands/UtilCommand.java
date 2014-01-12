@@ -37,17 +37,12 @@ public class UtilCommand extends AbstractCommand {
     
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("factoids.util") && sender instanceof Player) {
-            sender.sendMessage(ChatColor.RED + "You do not have permission to manage factoids!");
-            return true;
-        }
-        
-        if (args.length != 1) {
+        if (args.length < 1) {
             return false;
         }
 
         if (args[0].equalsIgnoreCase("about") || args[0].equalsIgnoreCase("-a")) {
-            showAbout(sender, args);
+            about(sender);
             return true;
         } else if (args[0].equalsIgnoreCase("reload") || args[0].equalsIgnoreCase("-r")) {
             reload(sender);
@@ -57,7 +52,12 @@ public class UtilCommand extends AbstractCommand {
         }
     }
     
-    private void showAbout(CommandSender sender, String[] arg) {
+    private void about(CommandSender sender) {
+        if (!sender.hasPermission("factoids.util") && sender instanceof Player) {
+            sender.sendMessage(ChatColor.RED + "You do not have permission to do that!");
+            return;
+        }
+        
         String version = plugin.getDescription().getVersion();
         
         sender.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "Factoids v" + version + ChatColor.RESET + ChatColor.GOLD + " by Qowface");
@@ -68,6 +68,11 @@ public class UtilCommand extends AbstractCommand {
     }
     
     private void reload(CommandSender sender) {
+        if (!sender.hasPermission("factoids.util") && sender instanceof Player) {
+            sender.sendMessage(ChatColor.RED + "You do not have permission to do that!");
+            return;
+        }
+        
         PluginManager manager = plugin.getServer().getPluginManager();
         
         sender.sendMessage(ChatColor.GREEN + "Reloading Factoids...");
