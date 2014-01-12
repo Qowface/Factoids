@@ -22,6 +22,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.HashMap;
 import net.qowface.factoids.Factoids;
 import net.qowface.factoids.util.Factoid;
@@ -119,6 +120,56 @@ public class Database {
         result.close();
         
         return factoids;
+    }
+    
+    public Factoid getFactoid(String factoidID) throws SQLException {
+        Factoid fact;
+        
+        String id;
+        String title;
+        String[] messageLines;
+        Boolean showTitle;
+        Boolean showFrame;
+        
+        conn = getConnection();
+        
+        PreparedStatement query = conn.prepareStatement("SELECT id, title, factoid, showtitle, showframe FROM factoids WHERE id=?;");
+        query.setString(1, factoidID);
+        ResultSet result = query.executeQuery();
+        
+        if (result.next()) {
+            id = result.getString("id");
+            title = result.getString("title");
+            messageLines = result.getString("factoid").split(";;");
+            showTitle = result.getBoolean("showtitle");
+            if (result.wasNull()) {
+                showTitle = null;
+            }
+            showFrame = result.getBoolean("showframe");
+            if (result.wasNull()) {
+                showFrame = null;
+            }
+            
+            fact = new Factoid(id, title, messageLines, showTitle, showFrame);
+            
+            return fact;
+        }
+        
+        return null;
+    }
+    
+    public void addFactoid(Factoid fact) throws SQLException {
+        conn = getConnection();
+        
+        PreparedStatement query = conn.prepareStatement("INSERT INTO factoids(id, title, factoid, showtitle, showframe) VALUES(?, ?, ?, ?, ?);");
+        query.setString(1, fact.getId());
+        query.setNull(2, Types.VARCHAR);
+        query.setString(3, fact.getMessageString());
+        query.setNull(4, Types.BOOLEAN);
+        query.setNull(5, Types.BOOLEAN);
+        query.executeUpdate();
+        
+        query.close();
     }
     
 }

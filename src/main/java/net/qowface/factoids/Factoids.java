@@ -88,4 +88,8 @@ public class Factoids extends JavaPlugin {
         return loadedFactoids;
     }
     
+    public Database getDB() {
+        return db;
+    }
+    
 }
